@@ -8,8 +8,12 @@ class Command(BaseCommand):
     help = "Создание суперпользователя с email и паролем"
 
     def add_arguments(self, parser):
-        parser.add_argument("--email", type=str, required=True, help="Email для суперпользователя")
-        parser.add_argument("--password", type=str, required=True, help="Пароль для суперпользователя")
+        parser.add_argument(
+            "--email", type=str, required=True, help="Email для суперпользователя"
+        )
+        parser.add_argument(
+            "--password", type=str, required=True, help="Пароль для суперпользователя"
+        )
 
     def handle(self, *args, **options):
         email = options["email"]
@@ -27,7 +31,9 @@ class Command(BaseCommand):
 
         try:
             if CustomUser.objects.filter(email=email).exists():
-                self.stdout.write(self.style.WARNING(f"Пользователь с email {email} уже существует."))
+                self.stdout.write(
+                    self.style.WARNING(f"Пользователь с email {email} уже существует.")
+                )
                 return
 
             user = CustomUser(email=email)
@@ -37,9 +43,10 @@ class Command(BaseCommand):
             user.is_superuser = True
             user.save()
 
-            self.stdout.write(self.style.SUCCESS(f"Суперпользователь с email:{email} успешно создан"))
+            self.stdout.write(
+                self.style.SUCCESS(f"Суперпользователь с email:{email} успешно создан")
+            )
         except ValidationError as e:
-            self.stderr.write(self.style.ERROR(f"Ошибка при создании пользователя: {e}"))
-
-
-
+            self.stderr.write(
+                self.style.ERROR(f"Ошибка при создании пользователя: {e}")
+            )
