@@ -20,18 +20,6 @@ class Periodicity(Enum):
 
 class Habit(models.Model):
 
-    # OWNER_CHOICES = [
-    #     ("every minute", "каждую минуту"),
-    #     ("every hour", "каждый час"),
-    #     ("every day", "каждый день"),
-    #     ("every other day", "через день"),
-    #     ("once every three days", "раз в 3 дня"),
-    #     ("once every four days", "раз в 4 дня"),
-    #     ("once every five days", "раз в 5 дня"),
-    #     ("once every six days", "раз в 6 дня"),
-    #     ("once a week", "раз в неделю"),
-    # ]
-
     owner = models.ForeignKey(
         CustomUser,
         verbose_name="Владелец",
@@ -118,28 +106,6 @@ class Habit(models.Model):
             return periodicity_map.get(periodicity_enum, None)
         except ValueError:
             return None
-
-    # def get_periodicity_timedelta(self):
-    #     if self.periodicity == "every minute":
-    #         return datetime.timedelta(minutes=1)
-    #     elif self.periodicity == "every hour":
-    #         return datetime.timedelta(hours=1)
-    #     elif self.periodicity == "every day":
-    #         return datetime.timedelta(days=1)
-    #     elif self.periodicity == "every other day":
-    #         return datetime.timedelta(days=2)
-    #     elif self.periodicity == "once every three days":
-    #         return datetime.timedelta(days=3)
-    #     elif self.periodicity == "once every four days":
-    #         return datetime.timedelta(days=4)
-    #     elif self.periodicity == "once every five days":
-    #         return datetime.timedelta(days=5)
-    #     elif self.periodicity == "once every six days":
-    #         return datetime.timedelta(days=6)
-    #     elif self.periodicity == "once a week":
-    #         return datetime.timedelta(weeks=1)
-    #     else:
-    #         return None
 
     class Meta:
         verbose_name = "Привычка"
