@@ -1,7 +1,9 @@
-from django.db import models
-from users.models import CustomUser
 import datetime
 from enum import Enum
+
+from django.db import models
+
+from users.models import CustomUser
 
 
 class Periodicity(Enum):

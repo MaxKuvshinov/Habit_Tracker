@@ -1,9 +1,8 @@
 from django.urls import path
 from rest_framework.routers import SimpleRouter
-from habits.views import HabitViewSet, PublicHabitListAPIView
 
 from habits.apps import HabitsConfig
-
+from habits.views import HabitViewSet, PublicHabitListAPIView
 
 app_name = HabitsConfig.name
 

@@ -1,8 +1,9 @@
-from rest_framework.test import APITestCase
-from rest_framework import status
-from users.models import CustomUser
-from habits.models import Habit
 from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
+
+from habits.models import Habit
+from users.models import CustomUser
 
 
 class HabitApiTestCase(APITestCase):
@@ -90,7 +91,9 @@ class HabitApiTestCase(APITestCase):
 
         response = self.client.post("/habits/", data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("Время выполнения привычки не должно превышать 120 секунд", str(response.json()),
+        self.assertIn(
+            "Время выполнения привычки не должно превышать 120 секунд",
+            str(response.json()),
         )
 
     def test_habit_create_with_a_pleasant_habit_and_reward(self):
@@ -106,8 +109,10 @@ class HabitApiTestCase(APITestCase):
 
         response = self.client.post("/habits/", data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("У приятной привычки не может быть вознаграждения или связанной привычки.", str(response.json()),
-                      )
+        self.assertIn(
+            "У приятной привычки не может быть вознаграждения или связанной привычки.",
+            str(response.json()),
+        )
 
     def test_habit_retrieve(self):
         """Тест просмотра"""
@@ -121,10 +126,7 @@ class HabitApiTestCase(APITestCase):
     def test_habit_update(self):
         "Тест обновления"
         url = reverse("habits:habit-detail", args=(self.habit.pk,))
-        data = {
-            "action": "Test action 2",
-            "periodicity": "every day"
-        }
+        data = {"action": "Test action 2", "periodicity": "every day"}
         response = self.client.patch(url, data)
         data = response.json()
 

@@ -1,6 +1,7 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
@@ -28,7 +29,6 @@ INSTALLED_APPS = [
     "habits",
     "users",
     "corsheaders",
-
 ]
 
 MIDDLEWARE = [
@@ -143,6 +143,13 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+CELERY_BEAT_SCHEDULE = {
+    "check_habits": {
+        "task": "habits.tasks.send_time_reminder",
+        "schedule": timedelta(minutes=1),
+    },
+}
 
 CORS_ALLOWED_ORIGINS = [
     "https://read-only.example.com",

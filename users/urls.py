@@ -1,11 +1,11 @@
 from django.urls import path
-from rest_framework.routers import SimpleRouter
-from users.views import CustomUserViewSet, CustomUserCreateAPIView
 from rest_framework.permissions import AllowAny
-from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from rest_framework.routers import SimpleRouter
+from rest_framework_simplejwt.views import (TokenObtainPairView,
+                                            TokenRefreshView)
 
 from users.apps import UsersConfig
-
+from users.views import CustomUserCreateAPIView, CustomUserViewSet
 
 app_name = UsersConfig.name
 
