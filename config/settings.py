@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     "django_celery_beat",
     "habits",
     "users",
+    "corsheaders",
+
 ]
 
 MIDDLEWARE = [
