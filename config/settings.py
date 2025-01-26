@@ -83,6 +83,7 @@ DATABASES = {
         "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
+print(DATABASES)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
