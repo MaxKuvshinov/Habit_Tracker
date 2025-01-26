@@ -1,4 +1,5 @@
 import os
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -164,3 +165,11 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 TELEGRAM_URL = os.getenv("TELEGRAM_URL")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+if "test" in sys.argv:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "test_db_sqlite3",
+        }
+    }
