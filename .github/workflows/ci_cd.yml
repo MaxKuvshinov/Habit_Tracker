@@ -69,4 +69,4 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - name: Deploy to server
         run: |
-          sshpass -p "${{ secrets.PASSWORD_ROOT }}" ssh -v -o StrictHostKeyChecking=no root@92.53.107.194 "cd /root/web/habits && git pull && docker-compose up -d --build"
+          sshpass -p "${{ secrets.PASSWORD_ROOT }}" ssh -v -o StrictHostKeyChecking=no root@92.53.107.194 "cd /root/web/habits/Habits_Tracker && git pull && docker-compose up -d --build"
