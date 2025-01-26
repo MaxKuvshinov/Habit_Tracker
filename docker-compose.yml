@@ -59,6 +59,8 @@ services:
       - ./html:/usr/share/nginx/html/
     ports:
       - "80:80"
+    depends_on:
+      - web
 
 volumes:
   postgres_data:
