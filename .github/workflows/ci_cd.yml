@@ -69,8 +69,4 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
-          docker stop myapp || true
-          docker rm myapp || true
-          docker run -d --name 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+          sshpass -p "${{ secrets.SSH_KEY }}" ssh -v -o StrictHostKeyChecking=no "${{ secrets.SSH_CONNECT }}" "cd /root/web/habits && git pull && docker-compose up -d --build"
