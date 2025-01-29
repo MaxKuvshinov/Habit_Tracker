@@ -50,7 +50,7 @@ class HabitViewSet(viewsets.ModelViewSet):
     pagination_class = HabitPaginator
 
     def get_queryset(self):
-        return Habit.objects.filter(owner=self.queryset.user.id)
+        return Habit.objects.filter(owner=self.request.user.id)
 
     def perform_create(self, serializer):
         habit = serializer.save()
